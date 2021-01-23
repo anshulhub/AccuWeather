@@ -23,7 +23,7 @@ const getInfo = async(event) => {
         try{
             
 
-            let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=b14425a6554d189a2d7dc18a8e7d7263`
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=b1b8f1846ac7e72f6e7bd1b341d51e66`
             const response = await fetch(url);
 
             const data = await response.json();
@@ -53,14 +53,17 @@ const getInfo = async(event) => {
             temp_status.innerHTML =
                 "<i class='fas  fa-smog' style='color: #99b3ff;'></i>";
             } else if (tempMood == "Haze") {
-            temp_status.innerHTML = '<img src="../images/hazy.png" alt="" srcset=""></img>'
-                "";
+            temp_status.innerHTML =
+                "<i class='fas fa-cloud-sun' style='color: #99b3ff;'></i>";
+            } else if (tempMood == "Fog") {
+                temp_status.innerHTML =
+                    "<i class='fas fa-water' style='color: #D0D0D0'></i>";    
             } else if (tempMood == "Rain") {
             temp_status.innerHTML =
                 "<i class='fas  fa-cloud-rain' style='color: #2b8cb3;'></i>";
             } else {
             temp_status.innerHTML =
-                "<i class='fas  fa-cloud' style='color:#0097e6;'></i>";
+                "<i class='fas  fa-sun' style='color: #eccc68;'></i>";
 
             }
             datahide.classList.remove('data_hide');
@@ -112,16 +115,17 @@ const r = `${b} ${p}`
 today_date.innerText=r
 
 const ti = new Date();
-var tim = ti.getUTCHours() + 5
-var ho =ti.getUTCMinutes() + 30
-if (ho>59) {
-    ho=ho-60;
-    if(ho<10){
-        ho="0"+ho
-    }
+var hou = ti.getHours()
+var tim = ti.getMinutes() 
+if (tim>59) {
+    tim=tim-60;
 }
+if(tim<10){
+    tim="0"+tim
+    }
 
-var tim=`${tim}:${ho}`;
-time.innerText=tim
+
+var hou=`${hou}:${tim}`;
+time.innerText=hou
 
 submitBtn.addEventListener('click', getInfo);
