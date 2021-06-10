@@ -34,7 +34,7 @@ Implemented Restful API using GET/PUT requests from OpenWeathermap.org by creati
 #### Get item
 
 ```http
-  GET /apiapi.openweathermap.org/data/weather?q=${cityVal}
+  GET /apiapi.openweathermap.org/data/weather?q=cityVal
 ```
 
 | Parameter | Type     | Description                       |
